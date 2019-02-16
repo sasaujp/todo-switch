@@ -33,7 +33,12 @@ async def test_todo_api(app, test_cli):
 
     # DELETE
     resp = await test_cli.delete(
-        '/api/todo/1',
+        f"/api/todo/hogehoge",
+    )
+    assert resp.status == 404
+
+    resp = await test_cli.delete(
+        f"/api/todo/{resp_json['todo_list'][0]['id']}",
     )
     assert resp.status == 200
 
